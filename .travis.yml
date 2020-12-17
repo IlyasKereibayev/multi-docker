@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t IlyasKereibayev/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ilyaskereibayev/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true IlyasKereibayev/react-test npm test
+  - docker run -e CI=true ilyaskereibayev/react-test npm test
 
 after_success:
-  - docker build -t IlyasKereibayev/multi-client ./client
-  - docker build -t IlyasKereibayev/multi-nginx ./nginx
-  - docker build -t IlyasKereibayev/multi-server ./server
-  - docker build -t IlyasKereibayev/multi-worker ./worker
+  - docker build -t ilyaskereibayev/multi-client ./client
+  - docker build -t ilyaskereibayev/multi-nginx ./nginx
+  - docker build -t ilyaskereibayev/multi-server ./server
+  - docker build -t ilyaskereibayev/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push IlyasKereibayev/multi-client
-  - docker push IlyasKereibayev/multi-nginx
-  - docker push IlyasKereibayev/multi-server
-  - docker push IlyasKereibayev/multi-worker
+  - docker push ilyaskereibayev/multi-client
+  - docker push ilyaskereibayev/multi-nginx
+  - docker push ilyaskereibayev/multi-server
+  - docker push ilyaskereibayev/multi-worker
